@@ -1,566 +1,357 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="text-white">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HOT-HUB</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background: #ffffff;
-      color: #fff;
-      padding: 20px 0;
-      margin: 0;
-      width: 100%;
-      min-height: 100vh;
-      user-select: none; /* impede seleção de texto (extra proteção) */
-    }
-    header {
-      background: #1F1F1F;
-      padding: 15px 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 1px #fff;
-      margin-bottom: 20px;
-      width: 100%;
-    }
-    .titulox h3 { color: red; font-weight: 600; font-size: 18px; margin-bottom: 2px; text-align: center; }
-    
-    .products-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      padding: 0 10px;
-      max-width: 100%;
-    }
-    
-    .product-card {
-      background: #2a2a2a;
-      border-radius: 10px;
-      padding: 16px;
-      width: 100%;
-      max-width: 500px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%;
-      background: #000;
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 15px;
-    }
-    .video-wrapper video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: contain;
-    }
-    .description {
-      font-size: 14px;
-      font-weight: bold;
-      color: #ccc;
-      margin-top: 10px;
-      text-align: center;
-    }
-    .telegram-button {
-      background-color: #0088cc;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-weight: bold;
-      box-shadow: 0 5px 15px rgba(0,136,204,0.5);
-      transition: all 0.3s;
-      text-align: center;
-      cursor: pointer;
-    }
-    .telegram-button:hover {
-      background-color: #007ab8;
-      transform: scale(1.04);
-    }
-    .purchase-button {
-      display: block;
-      margin: 20px auto 10px auto;
-      padding: 14px 24px;
-      font-size: 16px;
-      width: 80%;
-      max-width: 300px;
-      min-width: 220px;
-    }
-    .old-price {
-      font-size: 14px;
-      color: #d11414;
-      text-decoration: line-through;
-      margin-top: 6px;
-      text-align: center;
-    }
-    .toggle-menu {
-      background: #ff7b00;
-      border: none;
-      color: white;
-      padding: 12px 24px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .product-menu {
-      display: none;
-      background: #222;
-      padding: 15px;
-      margin: 0 10px 25px;
-      border-radius: 8px;
-      text-align: center;
-    }
-    .product-menu a {
-      display: block;
-      padding: 10px 0;
-      color: #ff9900;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 15px;
-    }
-    .product-menu a:hover {
-      text-decoration: underline;
-      color: #ffb733;
-    }
-    .support-button {
-      padding: 18px 40px;
-      font-size: 20px;
-      margin: 40px auto;
-      max-width: 90%;
-      display: block;
-      text-align: center;
-    }
-    @media (max-width: 600px) {
-      .purchase-button { padding: 12px 20px; font-size: 15px; min-width: 180px; }
-      .product-card { padding: 12px; }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOT-STORE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background: linear-gradient(135deg, #2a004a 0%, #4a0028 40%, #640101 70%, #2a004a 100%);
+        background-attachment: fixed;
+        position: relative;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+      body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 30% 60%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 30%, rgba(168, 85, 247, 0.10) 0%, transparent 60%);
+        pointer-events: none;
+        opacity: 0.8;
+        animation: cosmic-pulse 20s infinite alternate ease-in-out;
+      }
+      body::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: transparent;
+        pointer-events: none;
+        background-image: 
+          radial-gradient(circle, rgba(255, 105, 180, 0.08) 1px, transparent 1px),
+          radial-gradient(circle, rgba(186, 85, 211, 0.06) 1px, transparent 1px);
+        background-size: 80px 80px, 120px 120px;
+        background-position: 0 0, 40px 40px;
+        opacity: 0.15;
+        animation: float-stars 80s linear infinite;
+      }
+      @keyframes cosmic-pulse {
+        0%   { opacity: 0.7; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1.03); }
+      }
+      @keyframes float-stars {
+        0%   { background-position: 0 0, 40px 40px; }
+        100% { background-position: 2000px 2000px, 2040px 2040px; }
+      }
+      .neon-title {
+        text-shadow: 0 0 10px #c026d3, 0 0 20px #c026d3;
+      }
+      .zoom-hover {
+        transition: all 0.4s ease;
+        border: 1px solid #2a1a3a;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      }
+      .zoom-hover:hover {
+        transform: translateY(-8px) scale(1.04);
+        box-shadow: 0 15px 35px rgba(236, 72, 153, 0.25);
+        border-color: #ec4899;
+      }
+      #contact-seller {
+        transition: all 0.3s ease;
+      }
+      #contact-seller:hover {
+        background: linear-gradient(135deg, #c026d3, #ec4899);
+        box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+        transform: translateY(-2px);
+      }
+      .video-wrapper {
+        border: 1px solid #4a0028;
+        box-shadow: 0 0 25px rgba(100, 1, 1, 0.4);
+      }
+      .text-zinc-300 { color: #d1d5db; }
+      .text-zinc-400 { color: #9ca3af; }
+    </style>
 </head>
+<body class="font-sans">
 
-<body oncontextmenu="return false;"> <!-- bloqueia clique direito -->
+    <header class="flex items-center justify-between p-5 border-b border-purple-900/50 bg-black/40 backdrop-blur-md sticky top-0 z-50">
+      <a href="index.html" class="text-3xl font-black neon-title tracking-wider text-pink-600 hover:text-pink-500 transition">HOT-STORE</a>
+    </header>
 
-  <header>
-    <button class="toggle-menu" onclick="toggleMenu()">Click Here To See The List of Folders</button>
-  </header>
+    <div class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+    
+      <div class="lg:col-span-2 space-y-6">
+        
+        <div class="relative video-wrapper rounded-2xl overflow-hidden shadow-2xl">
+          <video id="video-player" controls class="w-full h-auto rounded-xl" poster="">
+            <source id="video-source" src="" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          <div id="video-error" class="hidden absolute inset-0 bg-black/80 flex items-center justify-center text-red-500 font-bold p-6 rounded-xl text-center text-lg">
+            Error loading video. Check console or contact support.
+          </div>
+        </div>
 
-  <div id="menu" class="product-menu">
-    <a href="#product1">😈AMELIA BONDLE GIRL🥵</a>
-    <a href="#product2">🔥LIZZY🥵😈</a>
-    <a href="#product3">🥵PREMIUM CP🥵</a>
-    <a href="#product4">🔥MON AND SON➡️</a>
-    <a href="#product5">😈NEW CP 02🔥</a>
-    <a href="#product6">🔥NEW CP 03🥵</a>
-    <a href="#product7">🔥REN BOYSv</a>
-    <a href="#product8">🔥English T33NS 😈</a>
-    <a href="#product9">🔥ANIMAL C#P FUCKING</a>
-    <a href="#product10">🔥T33ns L*aks➡️</a>
-    <a href="#product11">🔥IVANKAH✅</a>
-    <a href="#product12">😈DESIRE GRACIE✅</a>
-    <a href="#product13">🔥Black C#P</a>
-    <a href="#product14">✅WHITE TEENS🥵</a>
-    <a href="#product15">🔥High school thots🥵</a>
-    <a href="#product16">🥵PEDOMOM↕️</a>
-    <a href="#product17">🔥RAPE FOLDER✅🔥</a>
-    <a href="#product19">🔥FOOT CP✅</a>
-    <a href="#product20">CP PARADISE✅</a>
-  </div>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <h2 id="video-title" class="text-2xl md:text-3xl font-bold neon-title"></h2>
+          <div class="text-right">
+            <p class="text-base text-zinc-300 flex items-center gap-2">
+              <span>👁️</span> <span id="video-views">0</span> views
+            </p>
+          </div>
+        </div>
 
-  <div class="products-container">
+        <div class="bg-zinc-900/80 backdrop-blur-sm p-6 rounded-2xl border border-purple-900/30 shadow-xl space-y-6">
+          <h3 class="text-xl font-semibold neon-title">Purchase Options</h3>
+          <div class="grid gap-4">
+            <div class="bg-black/60 p-5 rounded-xl border border-pink-900/30">
+              <h4 class="text-pink-500 font-semibold mb-3 text-lg">🔴 Direct Contact</h4>
+              <p class="text-sm mb-4 text-zinc-400">Contact the seller directly via Telegram to purchase</p>
+              <button id="contact-seller" class="w-full text-center bg-gradient-to-r from-purple-700 to-pink-700 hover:from-purple-600 hover:to-pink-600 text-white py-3.5 rounded-xl font-bold text-lg shadow-lg transition-all duration-300">
+                🎧 Contact Seller
+              </button>
+            </div>
+          </div>
+        </div>
 
-    <!-- Produto 1 -->
-    <div id="product1" class="product-card" data-product="AMELIA BONDLE GIRL FOLDER" data-price="30">
-      <div class="titulox"><h3>😈AMELIA BONDLE GIRL🥵</h3></div>
-      <div class="description">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://files.catbox.moe/pg8oni.mp4" type="video/mp4"></video></div>
-      <div class="description">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/ryqyb" type="video/mp4"></video></div>
-      <div class="description">🥵Young Teen Solo Stuff🔥</div>
-      <div class="description">🔥1.34GB FOLDER on MEGA🔥 </div>
-      <div class="description">🥵🔥 + 6 FILES</div>
-      <div class="description">✅Premium content. Payment gives✅</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $30</button>
-      <div class="old-price">Price $37.00</div>
-      <div class="description">Private and secure. Access granted after payment.</div>
+        <div class="bg-zinc-900/80 backdrop-blur-sm p-6 rounded-2xl border border-purple-900/30 shadow-xl text-base">
+          <h3 class="text-xl font-semibold mb-4 neon-title">📄 Content Description</h3>
+          <p id="video-description" class="text-zinc-300 leading-relaxed whitespace-pre-line"></p>
+        </div>
+      </div>
+    
+      <aside class="space-y-6">
+        <h3 class="text-xl font-semibold neon-title">Suggested Videos</h3>
+        <div id="suggested-videos" class="space-y-6"></div>
+      </aside>
     </div>
 
-    <!-- Produto 2 -->
-    <div id="product2" class="product-card" data-product="LIZZY FOLDER" data-price="30">
-      <div class="titulox"><h3>🔥LIZZY🥵😈</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://files.catbox.moe/gpqmzn.mp4" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/npoay/7.mp4" type="video/mp4"></video></div>
-      <div class="description">✅BLACKMAIL VIDEOS🥵</div>
-      <div class="description">✅TRAINING VIDEOS🔥</div>
-      <div class="description">🔥!NC3ST😈 </div>
-      <div class="description">🥵20.22GB Folder on MEGA</div>
-      <div class="description">🥵3486 FILES, 🥵9 SUBFOLDERS</div>
-      <div class="description" style="text-align: center;">↕️Premium content. Payment gives↕️</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $30</button>
-      <div class="old-price">Price $37.00</div>
-      <div class="description">Private and secure. Access granted after payment.</div>
-    </div>
+    <footer class="bg-black/80 border-t border-purple-900/30 py-10 text-center text-zinc-500 mt-12">
+      <h2 class="text-2xl font-bold neon-title text-pink-600 mb-3">HOT-STORE</h2>
+      <p class="mb-4 text-zinc-400">Premium adult exclusive content platform.</p>
+      <p class="text-xs">© 2025-2026 HOT-STORE</p>
+    </footer>
 
-    <!-- Produto 3 -->
-    <div id="product3" class="product-card" data-product="PREMIUM CP FOLDER" data-price="45">
-      <div class="titulox"><h3>🔥🥵PREMIUM C#P🥵</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/wazvz" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/lbfrr" type="video/mp4"></video></div>
-      <div class="description">✅😈 64GB Folder on MEGA</div>
-      <div class="description">➡️COMPLETE FOLDER✅</div>
-      <div class="description" style="text-align: center;">➡️Premium content. Payment gives↕️</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $45</button>
-      <div class="old-price">Price $67.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 4 -->
-    <div id="product4" class="product-card" data-product="MON AND SON FOLDER" data-price="40">
-      <div class="titulox"><h3>🔥MON AND SON➡️</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/ovirp" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/ojiiy" type="video/mp4"></video></div>
-      <div class="description">R£AL !NC#-ST V!D£0S COLLECTION</div>
-      <div class="description">THIS FOLDER GOES CRAZY 😈💯</div>
-      <div class="description">🥵MOM - SON</div>
-      <div class="description">✅FATHER - DAUGHT3ER</div>
-      <div class="description">✅🥵2.94GB folder on MEGA 223 files</div>
-      <div class="description">✅MOM - DAUGTH3ER</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $40</button>
-      <div class="old-price">Price $57.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 5 -->
-    <div id="product5" class="product-card" data-product="NEW CP 02" data-price="30">
-      <div class="titulox"><h3>😈NEW CP 02🔥🥵</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/ebmjn/1.mp4" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/pzhni" type="video/mp4"></video></div>
-      <div class="description">✅🥵5GB folder on MEGA 60 files</div>
-      <div class="description">✅Complete Folder✅</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $30</button>
-      <div class="old-price">Price $57.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 6 -->
-    <div id="product6" class="product-card" data-product="NEW CP 03" data-price="30">
-      <div class="titulox"><h3>🔥😈NEW CP 03🔥🥵</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/ftvuk" type="video/mp4"></video></div>
-      <div class="description">✅🥵10GB folder on MEGA 600 files</div>
-      <div class="description">✅Complete Folder✅</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $30</button>
-      <div class="old-price">Price $57.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 7 -->
-    <div id="product7" class="product-card" data-product="REN BOYS" data-price="30">
-      <div class="titulox"><h3>🔥REN BOYS</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://files.catbox.moe/nzs932.mp4" type="video/mp4"></video></div>
-      <div class="description">✅🥵11GB folder on MEGA 400 files</div>
-      <div class="description">✅Complete Folder✅</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $30</button>
-      <div class="old-price">Price $57.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 8 -->
-    <div id="product8" class="product-card" data-product="English T33NS FOLDER" data-price="30">
-      <div class="titulox"><h3>🔥English T33NS 😈</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/sqync" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/czhsj" type="video/mp4"></video></div>
-      <div class="description">✅↕️MORE THAN 200 BLACKMAIL VIDEOS</div>
-      <div class="description">↕️5.19GB IN TOTAL↕️</div>
-      <div class="description">↕️OVER 500 VIDEOS↕️</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $30</button>
-      <div class="old-price">Price $57.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 9 -->
-    <div id="product9" class="product-card" data-product="ANIMAL C#P FUCKING" data-price="50">
-      <div class="titulox"><h3>🔥🔥ANIMAL C#P FUCKING🔥</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://files.catbox.moe/smlsv0.mp4" type="video/mp4"></video></div>
-      <div class="description">✅↕️5GB folder on MEGA 150 files</div>
-      <div class="description">➡️ ONE OF THE BEST CP FOLDERS✅</div>
-      <div class="description">🥵MORE THAN 150 VIDEOS ✅</div>
-      <div class="description">➡️MY COMPLETE FOLDER✅</div>
-      <div class="description" style="text-align: center;">↕️Premium content. Payment gives↕️</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $50</button>
-      <div class="old-price">Price $65.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 10 -->
-    <div id="product10" class="product-card" data-product="T33ns L*aks FOLDER" data-price="35">
-      <div class="titulox"><h3>🔥T33ns L*aks➡️</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/dihki" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/lpalt" type="video/mp4"></video></div>
-      <div class="description">✅🔥1TB folder on MEGA 74099 files, 200 subfolders</div>
-      <div class="description">✅Premium content. Payment gives✅</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $35</button>
-      <div class="old-price">Price $47.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 11 -->
-    <div id="product11" class="product-card" data-product="IVANKAH FOLDER" data-price="25">
-      <div class="titulox"><h3>🔥IVANKAH✅</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/daedk" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/yqonp" type="video/mp4"></video></div>
-      <div class="description">✅➡️10.22GB folder on MEGA 64 files</div>
-      <div class="description">✅14-YEAR-OLD GIRL ABUSING HER YOUNGER BROTHER</div>
-      <div class="description">✅YOUNG GIRL🥵</div>
-      <div class="description">✅🥵SOLO STUFF</div>
-      <div class="description">✅INCEST🥵</div>
-      <div class="description" style="text-align: center;">✅Premium content. Payment gives✅</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $25</button>
-      <div class="old-price">Price $37.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 12 -->
-    <div id="product12" class="product-card" data-product="DESIRE GRACIE FOLDER" data-price="20">
-      <div class="titulox"><h3>🔥DESIRE GRACIE✅</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/ekxzv" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://files.catbox.moe/sapojl.mp4" type="video/mp4"></video></div>
-      <div class="description">➡️SOLO LEAK ✅</div>
-      <div class="description">➡️COMPLETE FOLDER✅</div>
-      <div class="description">✅🔥1.31GB FOLDER on MEGA 108 files, 3 subfolders</div>
-      <div class="description">✅🔥108 FILES</div>
-      <div class="description">✅🔥3 SUBFOLDERS</div>
-      <div class="description" style="text-align: center;">↕️Premium content. Payment gives↕️</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $20</button>
-      <div class="old-price">Price $37.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 13 -->
-    <div id="product13" class="product-card" data-product="Black C#P FOLDER" data-price="45">
-      <div class="titulox"><h3>🔥Black C#P</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/arusm" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/vjnwf" type="video/mp4"></video></div>
-      <div class="description">✅↕️1GB folder on MEGA 108 files</div>
-      <div class="description">↕️Premium content. Payment gives↕️</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $45</button>
-      <div class="old-price">Price $67.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 14 -->
-    <div id="product14" class="product-card" data-product="WHITE TEENS FOLDER" data-price="35">
-      <div class="titulox"><h3>✅WHITE TEENS🥵</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/wuxwy" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/mlwdl" type="video/mp4"></video></div>
-      <div class="description">✅↕️5GB folder on MEGA 150 files</div>
-      <div class="description">↕️Premium content. Payment gives↕️</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $35</button>
-      <div class="old-price">Price $67.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 15 -->
-    <div id="product15" class="product-card" data-product="High school thots FOLDER" data-price="35">
-      <div class="titulox"><h3>🔥High school thots🥵</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/vtabh" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/gworm" type="video/mp4"></video></div>
-      <div class="description">✅2.77 folder on MEGA 997 files. 1 more bonus link</div>
-      <div class="description">✅Premium content. Payment gives✅</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $35</button>
-      <div class="old-price">Price $40.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 16 -->
-    <div id="product16" class="product-card" data-product="PEDOMOM FOLDER" data-price="30">
-      <div class="titulox"><h3>🥵PEDOMOM↕️</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/lzehy" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/vrchw" type="video/mp4"></video></div>
-      <div class="description">✅🔥3GB folder on MEGA 40 files </div>
-      <div class="description">✅Premium content. Payment gives✅</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $30</button>
-      <div class="old-price">Price $67.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 17 -->
-    <div id="product17" class="product-card" data-product="RAPE FOLDER" data-price="30">
-      <div class="titulox"><h3>🔥RAPE FOLDER✅🔥</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/aepoz" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/swfcu" type="video/mp4"></video></div>
-      <div class="description">✅🔥1.36 folder on MEGA 46 files and 474 subfolders </div>
-      <div class="description" style="text-align: center;">✅Premium content. Payment gives✅</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $30</button>
-      <div class="old-price">Price $47.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 19 -->
-    <div id="product19" class="product-card" data-product="FOOT CP FOLDER" data-price="30">
-      <div class="titulox"><h3>🔥FOOT CP✅</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/dswhe" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/cfsfd" type="video/mp4"></video></div>
-      <div class="description">MORE THAN 100 VIDEOS,4.5GB IN TOTAL</div>
-      <div class="description" style="text-align: center;">✅Premium content. Payment gives✅</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $30</button>
-      <div class="old-price">Price $47.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-    <!-- Produto 20 -->
-    <div id="product20" class="product-card" data-product="CP PARADISE FOLDER" data-price="30">
-      <div class="titulox"><h3>✅CP PARADISE🔥</h3></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/ogslz" type="video/mp4"></video></div>
-      <div class="description" style="text-align: center;">Preview↕️</div>
-      <div class="video-wrapper"><video controls><source src="https://leopard.hosting.pecon.us/dl/npgfr" type="video/mp4"></video></div>
-      <div class="description">➡️MORE THAN 150 VIDEOS✅4GB IN TOTAL</div>
-      <div class="description" style="text-align: center;">✅Premium content. Payment gives✅</div>
-      <h3 style="text-align: center; margin: 20px 0 10px;">Purchase Options</h3>
-      <button class="telegram-button purchase-button buy-btn">🎧 Contact Seller $30</button>
-      <div class="old-price">Price $47.00</div>
-      <div class="description">Secure and instant delivery after verification.</div>
-    </div>
-
-  </div>
-
-  <a href="javascript:void(0)" onclick="window.open(getTelegramLink('MENU'), '_blank')" class="telegram-button support-button">
-    💬 Support-Telegram
-  </a>
-
-  <script>
-    const TELEGRAM_USER = "USD808";
-    const SELLER = "Blue";
-
-    function getTelegramLink(text = "") {
-      const encoded = encodeURIComponent(text);
-      return `https://t.me/${TELEGRAM_USER}${text ? "?text=" + encoded : ""}`;
-    }
-
-    function toggleMenu() {
-      const menu = document.getElementById('menu');
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    }
-
-    // BLOQUEIO DE INSPECIONAR E CLIQUE DIREITO
-    document.addEventListener('contextmenu', event => event.preventDefault());
-
-    document.addEventListener('keydown', function(event) {
-      // Bloqueia F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S, etc.
-      if (
-        event.key === "F12" ||
-        (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J' || event.key === 'C')) ||
-        (event.ctrlKey && (event.key === 'u' || event.key === 'U' || event.key === 's' || event.key === 'S' || event.key === 'p' || event.key === 'P'))
-      ) {
-        event.preventDefault();
-        alert("Acesso ao código-fonte bloqueado.");
-        return false;
+    <script>
+    // ─── TODOS OS PRODUTOS EM UM ÚNICO ARRAY ────────────────────────────────
+    const produtos = [
+      {
+        title: "BLACK CP😊",
+        cover: "https://leopard.hosting.pecon.us/dl/qhihk",
+        teaser: "https://leopard.hosting.pecon.us/dl/vjnwf",
+        description: "😈BLACK CP 📂 MORE THAN 100 VIDEOS 9GB IN TOTAL MY COMPLETE FOLDER PREMIUM"
+      },
+      {
+        title: "CP PARADISE",
+        cover: "https://leopard.hosting.pecon.us/dl/sirul",
+        teaser: "https://example.com/teasers/001.mp4",
+        description: "CP PARADISE AVAILABLE 🔥MORE THAN 150 VIDEOS✅ 4GB IN TOTAL✅ FULL FOLDER"
+      },
+      {
+        title: "😈NEW CP 02🔥",
+        cover: "https://leopard.hosting.pecon.us/dl/qqcxz",
+        teaser: "https://leopard.hosting.pecon.us/dl/pzhni",
+        description: "NEW CP 02🔥 📂MORE THAN 400 VIDEOS 5GB IN TOTAL MY COMPLETE FOLDER"
+      },
+      {
+        title: "✅NEW CP 03🔥",
+        cover: "https://leopard.hosting.pecon.us/dl/asnac",
+        teaser: "https://leopard.hosting.pecon.us/dl/ftvuk",
+        description: "NEW CP 03 📂➡️ MORE THAN 200 VIDEOS✅ ➡️ 6GB IN TOTAL✅"
+      },
+      {
+        title: "🥵PREMIUM CP🥵",
+        cover: "https://example.com/covers/023.jpg",
+        teaser: "https://leopard.hosting.pecon.us/dl/lbfrr",
+        description: "🥵PREMIUM CP 📂➡️ MORE THAN 300 VIDEOS✅ ➡️5GB IN TOTAL ➡️FULL FOLDER ✅"
+      },
+      {
+        title: "🔥REN BOYS",
+        cover: "https://example.com/covers/023.jpg",
+        teaser: "https://files.catbox.moe/nzs932.mp4",
+        description: "🚨REN BOYS AVAILABLE 🔥MORE THAN 300 VIDEOS ➡️6.5GB IN TOTAL ✅FULL FOLDER ✅"
+      },
+      {
+        title: "🙈CP GAY",
+        cover: "https://leopard.hosting.pecon.us/dl/vgjch",
+        teaser: "https://example.com/teasers/001.mp4",
+        description: "😈C#P  GAY 📂 MORE THAN 100 VIDEOS ✅ 5GB IN TOTAL ✅ COMPLETE FOLDER"
+      },
+      {
+        title: "ANIMAL CP FUCKING",
+        cover: "https://leopard.hosting.pecon.us/dl/gmdif",
+        teaser: "https://files.catbox.moe/smlsv0.mp4",
+        description: "✅ANIMAL CP FUCKING  AVAILABLE 🔥 ➡️266 VIDEOS ➡️5.5GB  ➡️FULL FOLDER ✅"
+      },
+      {
+        title: "🔥RAPE CP",
+        cover: "https://leopard.hosting.pecon.us/dl/vovoz",
+        teaser: "https://leopard.hosting.pecon.us/dl/swfcu",
+        description: "📁RAPE CP FOLDER AVAILABLE 🔥MORE THAN 350 VIDEOS ➡️15.5GB ➡️FULL FOLDER ✅"
+      },
+      {
+        title: "PEDOMOM🍑",
+        cover: "https://leopard.hosting.pecon.us/dl/ekwob",
+        teaser: "https://leopard.hosting.pecon.us/dl/vrchw",
+        description: "🥵PEDOMOM AVAILABLE 🔥 ➡️MORE THAN 20 VIDEOS ➡️2GB ✅ ➡️FULL FOLDER ✅"
+      },
+      {
+        title: "MON AND SON📁",
+        cover: "https://leopard.hosting.pecon.us/dl/yvnfh",
+        teaser: "https://leopard.hosting.pecon.us/dl/ojiiy",
+        description: "📁MOM AND SON FULL HD AVAILABLE 🔥 ➡️MORE THAN 360 VIDEOS✅ ➡️10GB✅  ➡️FULL FOLDER ✅"
+      },
+      {
+        title: "FATHER AND DAUGHTER",
+        cover: "https://leopard.hosting.pecon.us/dl/svrev",
+        teaser: "https://example.com/teasers/001.mp4",
+        description: "✅R£AL !NC#-ST V!D£0S COLLECTION THIS FOLDER GOES CRAZY 😈💯 DAD – DAUGHTER PREMIUM CONTENT"
+      },
+      {
+        title: "AMELIA AND BROTHER🍑‼",
+        cover: "https://leopard.hosting.pecon.us/dl/zlydm",
+        teaser: "https://leopard.hosting.pecon.us/dl/ryqyb",
+        description: "✅‼AMELIA TEEN LEAKS✅ Young Teen Solo Stuff ✅PREMIUM CONTENT"
+      },
+      {
+        title: "🙈LIZZY AND BROTHER🍑",
+        cover: "https://leopard.hosting.pecon.us/dl/eusgu",
+        teaser: "https://leopard.hosting.pecon.us/dl/npoay/7.mp4",
+        description: "🔥LIZZY FOLDER ✅BLACKMAIL VIDEOS🥵 ✅TRAINING VIDEOS🔥 🥵20.22GB Folder on MEGA 🥵3486 FILES, 🥵9 SUBFOLDERS"
+      },
+      {
+        title: "AMERICAN TEENS✅",
+        cover: "https://leopard.hosting.pecon.us/dl/jiusg",
+        teaser: "https://example.com/teasers/001.mp4",
+        description: "😈AMERICAN TEENS AVAILABLE 🔥 ➡️MORE THAN 150 VIDEOS✅ 4.5GB✅ FULL FOLDER ✅"
+      },
+      {
+        title: "ENGLISH TEENS🙈",
+        cover: "https://leopard.hosting.pecon.us/dl/qlviq",
+        teaser: "https://leopard.hosting.pecon.us/dl/sqync",
+        description: "🔥ENGLISH TEENS ✅OVER 500 VIDEOS ✅ 5.19GB IN TOTAL ✅ MORE THAN 200 BLACKMAIL VIDEOS ✅Incest ✅ MY COMPLETE FOLDE"
+      },
+      {
+        title: "WHITE TEENS",
+        cover: "https://leopard.hosting.pecon.us/dl/gtbph",
+        teaser: "https://leopard.hosting.pecon.us/dl/mlwdl",
+        description: "😈WHITE TEENS AVAILABLE 🔥MORE THAN 250 VIDEOS✅ 7GB IN TOTAL FULL FOLDER ✅"
+      },
+      {
+        title: "TEENS LEAKS📁‼",
+        cover: "https://leopard.hosting.pecon.us/dl/dfxog",
+        teaser: "https://leopard.hosting.pecon.us/dl/lpalt",
+        description: "😈T33NS LEAKS FOLDER📁 ✅5GB IN TOTAL ✅MORE THAN 180 VIDEOS ✅MY COMPLETE FOLDER"
+      },
+      {
+        title: "IVANKA AND BROTHER🤤",
+        cover: "https://leopard.hosting.pecon.us/dl/vzpjx",
+        teaser: "https://leopard.hosting.pecon.us/dl/yqonp",
+        description: "🔥IVANKAH- ✅10.22GB folder on MEGA 64 files ✅14-YEAR-OLD GIRL ABUSING HER YOUNGER BROTHER ✅INCEST🥵 ✅🥵SOLO STUFF"
+      },
+      {
+        title: "HIGH SCHOOL SHOTS🫦🥵",
+        cover: "https://leopard.hosting.pecon.us/dl/napgs",
+        teaser: "https://leopard.hosting.pecon.us/dl/gworm",
+        description: "🚨HIGH SCHOOL THOTS🚨 BIG PROMO ✅MORE THAN 300 Videos ✅6GB IN TOTAL ✅TEENS"
+      },
+      {
+        title: "DESIRE GARCIA FOLDER📁",
+        cover: "https://leopard.hosting.pecon.us/dl/voyki",
+        teaser: "https://files.catbox.moe/sapojl.mp4",
+        description: "✅DESIREE GARCIE folder 📁 Snapchat hacking tools snap leak Complete folder"
       }
-    });
+    ];
 
-    // Detecta abertura do DevTools (método aproximado)
-    let devtoolsOpen = false;
-    const threshold = 160; // pixels
-    setInterval(() => {
-      const widthDiff = window.outerWidth - window.innerWidth;
-      const heightDiff = window.outerHeight - window.innerHeight;
-      if (widthDiff > threshold || heightDiff > threshold) {
-        if (!devtoolsOpen) {
-          devtoolsOpen = true;
-          alert("Ferramentas de desenvolvedor detectadas. Acesso restrito.");
-          // Opcional: redirecionar ou fechar aba
-          // window.location.href = "about:blank";
-          // ou window.close();
-        }
+    // ─── LÓGICA DA PÁGINA ──────────────────────────────────────────────────
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get("id")) || 1;
+
+      // Produto atual (índice começa em 0)
+      const produto = produtos[id - 1];
+
+      if (!produto) {
+        document.getElementById("video-title").textContent = "Produto não encontrado";
+        document.getElementById("video-description").textContent = "ID inválido.";
+        return;
+      }
+
+      // Preencher informações principais
+      document.getElementById("video-title").innerHTML = `${produto.title} <span class='text-pink-500'>⭐</span>`;
+      document.getElementById("video-description").innerHTML = produto.description.split('✅').join('<br>').split('➡️').join('→ ');
+      document.getElementById("video-views").textContent = (Math.floor(Math.random() * 12000) + 500).toLocaleString();
+
+      // Poster e vídeo teaser
+      const videoPlayer = document.getElementById("video-player");
+      const videoSource = document.getElementById("video-source");
+      const videoError = document.getElementById("video-error");
+
+      videoPlayer.poster = produto.cover || `https://via.placeholder.com/1280x720?text=No+Poster+${id}`;
+
+      if (produto.teaser && produto.teaser.trim() !== "") {
+        videoSource.src = produto.teaser;
+        videoPlayer.load();
       } else {
-        devtoolsOpen = false;
+        videoPlayer.controls = false;
+        videoError.innerHTML = "Full content available only after purchase via Telegram.<br>Contact us to acquire.";
+        videoError.classList.remove("hidden");
       }
-    }, 500);
 
-    document.addEventListener("DOMContentLoaded", function () {
-      document.querySelectorAll("#menu a").forEach(link => {
-        link.addEventListener("click", () => {
-          document.getElementById('menu').style.display = 'none';
-        });
+      videoPlayer.addEventListener("error", () => {
+        videoError.classList.remove("hidden");
+        console.error("Erro no vídeo:", videoPlayer.error?.message);
       });
 
-      document.querySelectorAll('.buy-btn').forEach(button => {
-        button.addEventListener('click', function() {
-          const card = this.closest('.product-card');
-          const productName = card.getAttribute('data-product');
-          const price = card.getAttribute('data-price');
+      // Vídeos sugeridos (exclui o atual, randomiza 3)
+      const suggested = produtos
+        .map((p, idx) => ({ id: idx + 1, title: p.title, image: p.cover }))
+        .filter(v => v.id !== id)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3);
 
-          const message = `Hi ${SELLER}\n\n` +
-                          `I am interested in purchasing this content:\n` +
-                          `"${productName}"\n\n` +
-                          `Price: $${price}\n\n` +
-                          `Can you confirm:\n` +
-                          `Payment Details\n\n` +
-                          `Thanks! 😊`;
+      const container = document.getElementById("suggested-videos");
+      container.innerHTML = "";
 
-          window.open(getTelegramLink(message), '_blank');
-        });
+      suggested.forEach(video => {
+        container.innerHTML += `
+          <a href="video.html?id=${video.id}" class="block zoom-hover rounded-2xl overflow-hidden shadow-xl bg-zinc-900/70 backdrop-blur-sm border border-purple-900/40">
+            <div class="flex flex-col md:flex-row">
+              <img src="${video.image}" class="w-full md:w-48 h-48 md:h-full object-cover" alt="${video.title}">
+              <div class="p-5 flex flex-col justify-between flex-1">
+                <p class="font-bold text-lg neon-title line-clamp-2">${video.title}</p>
+              </div>
+            </div>
+          </a>
+        `;
       });
+
+      // Botão Contact Seller (Telegram)
+      document.getElementById("contact-seller").addEventListener("click", () => {
+
+
+        const seller = 'Admg';
+        const message = `👋 Hi ${seller}\n\nI'm interested in purchasing this content:\n"${produto.title}"\n\nPlease:\n- Share payment details\n- Explain delivery process\n\nThx! 😊`;
+        
+        const telegramUrl = `https://t.me/USD808?text=${encodeURIComponent(message)}`;
+        window.open(telegramUrl, '_blank');
+      });
+
+      // Bloqueio básico de dev tools (opcional – não é 100% eficaz)
+      document.addEventListener('keydown', e => {
+        if (e.key === "F12" || 
+            (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) || 
+            (e.ctrlKey && e.key === "U")) {
+          e.preventDefault();
+        }
+      });
+      document.addEventListener('contextmenu', e => e.preventDefault());
     });
-  </script>
-
+    </script>
 </body>
+
 </html>
+
+
