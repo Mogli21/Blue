@@ -1,357 +1,238 @@
 <!DOCTYPE html>
-<html lang="en" class="text-white">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HOT-STORE</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        background: linear-gradient(135deg, #2a004a 0%, #4a0028 40%, #640101 70%, #2a004a 100%);
-        background-attachment: fixed;
-        position: relative;
-        overflow-x: hidden;
-        min-height: 100vh;
-      }
-      body::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at 30% 60%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
-                    radial-gradient(circle at 70% 30%, rgba(168, 85, 247, 0.10) 0%, transparent 60%);
-        pointer-events: none;
-        opacity: 0.8;
-        animation: cosmic-pulse 20s infinite alternate ease-in-out;
-      }
-      body::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: transparent;
-        pointer-events: none;
-        background-image: 
-          radial-gradient(circle, rgba(255, 105, 180, 0.08) 1px, transparent 1px),
-          radial-gradient(circle, rgba(186, 85, 211, 0.06) 1px, transparent 1px);
-        background-size: 80px 80px, 120px 120px;
-        background-position: 0 0, 40px 40px;
-        opacity: 0.15;
-        animation: float-stars 80s linear infinite;
-      }
-      @keyframes cosmic-pulse {
-        0%   { opacity: 0.7; transform: scale(1); }
-        100% { opacity: 1; transform: scale(1.03); }
-      }
-      @keyframes float-stars {
-        0%   { background-position: 0 0, 40px 40px; }
-        100% { background-position: 2000px 2000px, 2040px 2040px; }
-      }
-      .neon-title {
-        text-shadow: 0 0 10px #c026d3, 0 0 20px #c026d3;
-      }
-      .zoom-hover {
-        transition: all 0.4s ease;
-        border: 1px solid #2a1a3a;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-      }
-      .zoom-hover:hover {
-        transform: translateY(-8px) scale(1.04);
-        box-shadow: 0 15px 35px rgba(236, 72, 153, 0.25);
-        border-color: #ec4899;
-      }
-      #contact-seller {
-        transition: all 0.3s ease;
-      }
-      #contact-seller:hover {
-        background: linear-gradient(135deg, #c026d3, #ec4899);
-        box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
-        transform: translateY(-2px);
-      }
-      .video-wrapper {
-        border: 1px solid #4a0028;
-        box-shadow: 0 0 25px rgba(100, 1, 1, 0.4);
-      }
-      .text-zinc-300 { color: #d1d5db; }
-      .text-zinc-400 { color: #9ca3af; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HOT-STORE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #2a004a 0%, #4a0028 40%, #640101 70%, #2a004a 100%);
+      background-attachment: fixed;
+      position: relative;
+      overflow-x: hidden;
+      color: white;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 60%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 30%, rgba(168, 85, 247, 0.10) 0%, transparent 60%);
+      pointer-events: none;
+      opacity: 0.8;
+      animation: cosmic-pulse 20s infinite alternate ease-in-out;
+    }
+    @keyframes cosmic-pulse {
+      0%   { opacity: 0.7; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.03); }
+    }
+    .card-hover {
+      transition: all 0.3s ease;
+      border: 1px solid #2a1a3a;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 15px 35px rgba(236, 72, 153, 0.25);
+      border-color: #ec4899;
+    }
+    .neon-title {
+      text-shadow: 0 0 10px #c026d3, 0 0 20px #c026d3;
+    }
+    .filter-active {
+      background: linear-gradient(135deg, #c026d3, #ec4899) !important;
+      box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+    }
+  </style>
 </head>
-<body class="font-sans">
+<body class="min-h-screen">
 
-    <header class="flex items-center justify-between p-5 border-b border-purple-900/50 bg-black/40 backdrop-blur-md sticky top-0 z-50">
-      <a href="index.html" class="text-3xl font-black neon-title tracking-wider text-pink-600 hover:text-pink-500 transition">HOT-STORE</a>
-    </header>
+  <!-- Header -->
+  <header class="flex items-center justify-between p-5 border-b border-purple-900/50 bg-black/60 backdrop-blur-md sticky top-0 z-50">
+    <h1 class="text-3xl font-black neon-title tracking-wider text-pink-600">HOT-STORE</h1>
+  </header>
 
-    <div class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
-    
-      <div class="lg:col-span-2 space-y-6">
-        
-        <div class="relative video-wrapper rounded-2xl overflow-hidden shadow-2xl">
-          <video id="video-player" controls class="w-full h-auto rounded-xl" poster="">
-            <source id="video-source" src="" type="video/mp4">
-            Your browser does not support HTML5 video.
-          </video>
-          <div id="video-error" class="hidden absolute inset-0 bg-black/80 flex items-center justify-center text-red-500 font-bold p-6 rounded-xl text-center text-lg">
-            Error loading video. Check console or contact support.
-          </div>
-        </div>
-
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <h2 id="video-title" class="text-2xl md:text-3xl font-bold neon-title"></h2>
-          <div class="text-right">
-            <p class="text-base text-zinc-300 flex items-center gap-2">
-              <span>👁️</span> <span id="video-views">0</span> views
-            </p>
-          </div>
-        </div>
-
-        <div class="bg-zinc-900/80 backdrop-blur-sm p-6 rounded-2xl border border-purple-900/30 shadow-xl space-y-6">
-          <h3 class="text-xl font-semibold neon-title">Purchase Options</h3>
-          <div class="grid gap-4">
-            <div class="bg-black/60 p-5 rounded-xl border border-pink-900/30">
-              <h4 class="text-pink-500 font-semibold mb-3 text-lg">🔴 Direct Contact</h4>
-              <p class="text-sm mb-4 text-zinc-400">Contact the seller directly via Telegram to purchase</p>
-              <button id="contact-seller" class="w-full text-center bg-gradient-to-r from-purple-700 to-pink-700 hover:from-purple-600 hover:to-pink-600 text-white py-3.5 rounded-xl font-bold text-lg shadow-lg transition-all duration-300">
-                🎧 Contact Seller
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-zinc-900/80 backdrop-blur-sm p-6 rounded-2xl border border-purple-900/30 shadow-xl text-base">
-          <h3 class="text-xl font-semibold mb-4 neon-title">📄 Content Description</h3>
-          <p id="video-description" class="text-zinc-300 leading-relaxed whitespace-pre-line"></p>
-        </div>
+  <!-- Search + Filters -->
+  <section class="p-6 max-w-7xl mx-auto space-y-6">
+    <div class="flex justify-center">
+      <div class="relative w-full max-w-xl">
+        <input id="search" type="text" placeholder="Search premium folders..." 
+               class="w-full pl-12 pr-5 py-3 text-base rounded-full bg-zinc-900/80 border border-purple-800/50 text-white placeholder-zinc-500 outline-none focus:border-pink-600 transition-all duration-300" />
       </div>
-    
-      <aside class="space-y-6">
-        <h3 class="text-xl font-semibold neon-title">Suggested Videos</h3>
-        <div id="suggested-videos" class="space-y-6"></div>
-      </aside>
     </div>
 
-    <footer class="bg-black/80 border-t border-purple-900/30 py-10 text-center text-zinc-500 mt-12">
-      <h2 class="text-2xl font-bold neon-title text-pink-600 mb-3">HOT-STORE</h2>
-      <p class="mb-4 text-zinc-400">Premium adult exclusive content platform.</p>
-      <p class="text-xs">© 2025-2026 HOT-STORE</p>
-    </footer>
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <h1 id="page-info" class="text-3xl md:text-4xl font-extrabold neon-title text-white">Page 1 (1–12 of 21 folders)</h1>
+      <p id="videos-found" class="text-lg text-zinc-400">21 folders found</p>
+    </div>
 
-    <script>
-    // ─── TODOS OS PRODUTOS EM UM ÚNICO ARRAY ────────────────────────────────
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div></div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-sm text-zinc-400 font-medium">Sort by:</span>
+        <button id="filterRecent"    class="px-5 py-2.5 rounded-full text-sm font-semibold bg-zinc-800 hover:bg-purple-900/50 filter-active">Recent</button>
+        <button id="filterViews"     class="px-5 py-2.5 rounded-full text-sm font-semibold bg-zinc-800 hover:bg-purple-900/50">Views</button>
+        <button id="filterPriceHigh" class="px-5 py-2.5 rounded-full text-sm font-semibold bg-zinc-800 hover:bg-purple-900/50">Price High</button>
+        <button id="filterPriceLow"  class="px-5 py-2.5 rounded-full text-sm font-semibold bg-zinc-800 hover:bg-purple-900/50">Price Low</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cards container -->
+  <main id="card-container" class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 max-w-7xl mx-auto"></main>
+
+  <!-- Pagination -->
+  <div id="pagination" class="flex justify-center flex-wrap gap-3 py-8"></div>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    // ─── PRODUTOS ───────────────────────────────────────
     const produtos = [
-      {
-        title: "BLACK CP😊",
-        cover: "https://leopard.hosting.pecon.us/dl/qhihk",
-        teaser: "https://leopard.hosting.pecon.us/dl/vjnwf",
-        description: "😈BLACK CP 📂 MORE THAN 100 VIDEOS 9GB IN TOTAL MY COMPLETE FOLDER PREMIUM"
-      },
-      {
-        title: "CP PARADISE",
-        cover: "https://leopard.hosting.pecon.us/dl/sirul",
-        teaser: "https://example.com/teasers/001.mp4",
-        description: "CP PARADISE AVAILABLE 🔥MORE THAN 150 VIDEOS✅ 4GB IN TOTAL✅ FULL FOLDER"
-      },
-      {
-        title: "😈NEW CP 02🔥",
-        cover: "https://leopard.hosting.pecon.us/dl/qqcxz",
-        teaser: "https://leopard.hosting.pecon.us/dl/pzhni",
-        description: "NEW CP 02🔥 📂MORE THAN 400 VIDEOS 5GB IN TOTAL MY COMPLETE FOLDER"
-      },
-      {
-        title: "✅NEW CP 03🔥",
-        cover: "https://leopard.hosting.pecon.us/dl/asnac",
-        teaser: "https://leopard.hosting.pecon.us/dl/ftvuk",
-        description: "NEW CP 03 📂➡️ MORE THAN 200 VIDEOS✅ ➡️ 6GB IN TOTAL✅"
-      },
-      {
-        title: "🥵PREMIUM CP🥵",
-        cover: "https://example.com/covers/023.jpg",
-        teaser: "https://leopard.hosting.pecon.us/dl/lbfrr",
-        description: "🥵PREMIUM CP 📂➡️ MORE THAN 300 VIDEOS✅ ➡️5GB IN TOTAL ➡️FULL FOLDER ✅"
-      },
-      {
-        title: "🔥REN BOYS",
-        cover: "https://example.com/covers/023.jpg",
-        teaser: "https://files.catbox.moe/nzs932.mp4",
-        description: "🚨REN BOYS AVAILABLE 🔥MORE THAN 300 VIDEOS ➡️6.5GB IN TOTAL ✅FULL FOLDER ✅"
-      },
-      {
-        title: "🙈CP GAY",
-        cover: "https://leopard.hosting.pecon.us/dl/vgjch",
-        teaser: "https://example.com/teasers/001.mp4",
-        description: "😈C#P  GAY 📂 MORE THAN 100 VIDEOS ✅ 5GB IN TOTAL ✅ COMPLETE FOLDER"
-      },
-      {
-        title: "ANIMAL CP FUCKING",
-        cover: "https://leopard.hosting.pecon.us/dl/gmdif",
-        teaser: "https://files.catbox.moe/smlsv0.mp4",
-        description: "✅ANIMAL CP FUCKING  AVAILABLE 🔥 ➡️266 VIDEOS ➡️5.5GB  ➡️FULL FOLDER ✅"
-      },
-      {
-        title: "🔥RAPE CP",
-        cover: "https://leopard.hosting.pecon.us/dl/vovoz",
-        teaser: "https://leopard.hosting.pecon.us/dl/swfcu",
-        description: "📁RAPE CP FOLDER AVAILABLE 🔥MORE THAN 350 VIDEOS ➡️15.5GB ➡️FULL FOLDER ✅"
-      },
-      {
-        title: "PEDOMOM🍑",
-        cover: "https://leopard.hosting.pecon.us/dl/ekwob",
-        teaser: "https://leopard.hosting.pecon.us/dl/vrchw",
-        description: "🥵PEDOMOM AVAILABLE 🔥 ➡️MORE THAN 20 VIDEOS ➡️2GB ✅ ➡️FULL FOLDER ✅"
-      },
-      {
-        title: "MON AND SON📁",
-        cover: "https://leopard.hosting.pecon.us/dl/yvnfh",
-        teaser: "https://leopard.hosting.pecon.us/dl/ojiiy",
-        description: "📁MOM AND SON FULL HD AVAILABLE 🔥 ➡️MORE THAN 360 VIDEOS✅ ➡️10GB✅  ➡️FULL FOLDER ✅"
-      },
-      {
-        title: "FATHER AND DAUGHTER",
-        cover: "https://leopard.hosting.pecon.us/dl/svrev",
-        teaser: "https://example.com/teasers/001.mp4",
-        description: "✅R£AL !NC#-ST V!D£0S COLLECTION THIS FOLDER GOES CRAZY 😈💯 DAD – DAUGHTER PREMIUM CONTENT"
-      },
-      {
-        title: "AMELIA AND BROTHER🍑‼",
-        cover: "https://leopard.hosting.pecon.us/dl/zlydm",
-        teaser: "https://leopard.hosting.pecon.us/dl/ryqyb",
-        description: "✅‼AMELIA TEEN LEAKS✅ Young Teen Solo Stuff ✅PREMIUM CONTENT"
-      },
-      {
-        title: "🙈LIZZY AND BROTHER🍑",
-        cover: "https://leopard.hosting.pecon.us/dl/eusgu",
-        teaser: "https://leopard.hosting.pecon.us/dl/npoay/7.mp4",
-        description: "🔥LIZZY FOLDER ✅BLACKMAIL VIDEOS🥵 ✅TRAINING VIDEOS🔥 🥵20.22GB Folder on MEGA 🥵3486 FILES, 🥵9 SUBFOLDERS"
-      },
-      {
-        title: "AMERICAN TEENS✅",
-        cover: "https://leopard.hosting.pecon.us/dl/jiusg",
-        teaser: "https://example.com/teasers/001.mp4",
-        description: "😈AMERICAN TEENS AVAILABLE 🔥 ➡️MORE THAN 150 VIDEOS✅ 4.5GB✅ FULL FOLDER ✅"
-      },
-      {
-        title: "ENGLISH TEENS🙈",
-        cover: "https://leopard.hosting.pecon.us/dl/qlviq",
-        teaser: "https://leopard.hosting.pecon.us/dl/sqync",
-        description: "🔥ENGLISH TEENS ✅OVER 500 VIDEOS ✅ 5.19GB IN TOTAL ✅ MORE THAN 200 BLACKMAIL VIDEOS ✅Incest ✅ MY COMPLETE FOLDE"
-      },
-      {
-        title: "WHITE TEENS",
-        cover: "https://leopard.hosting.pecon.us/dl/gtbph",
-        teaser: "https://leopard.hosting.pecon.us/dl/mlwdl",
-        description: "😈WHITE TEENS AVAILABLE 🔥MORE THAN 250 VIDEOS✅ 7GB IN TOTAL FULL FOLDER ✅"
-      },
-      {
-        title: "TEENS LEAKS📁‼",
-        cover: "https://leopard.hosting.pecon.us/dl/dfxog",
-        teaser: "https://leopard.hosting.pecon.us/dl/lpalt",
-        description: "😈T33NS LEAKS FOLDER📁 ✅5GB IN TOTAL ✅MORE THAN 180 VIDEOS ✅MY COMPLETE FOLDER"
-      },
-      {
-        title: "IVANKA AND BROTHER🤤",
-        cover: "https://leopard.hosting.pecon.us/dl/vzpjx",
-        teaser: "https://leopard.hosting.pecon.us/dl/yqonp",
-        description: "🔥IVANKAH- ✅10.22GB folder on MEGA 64 files ✅14-YEAR-OLD GIRL ABUSING HER YOUNGER BROTHER ✅INCEST🥵 ✅🥵SOLO STUFF"
-      },
-      {
-        title: "HIGH SCHOOL SHOTS🫦🥵",
-        cover: "https://leopard.hosting.pecon.us/dl/napgs",
-        teaser: "https://leopard.hosting.pecon.us/dl/gworm",
-        description: "🚨HIGH SCHOOL THOTS🚨 BIG PROMO ✅MORE THAN 300 Videos ✅6GB IN TOTAL ✅TEENS"
-      },
-      {
-        title: "DESIRE GARCIA FOLDER📁",
-        cover: "https://leopard.hosting.pecon.us/dl/voyki",
-        teaser: "https://files.catbox.moe/sapojl.mp4",
-        description: "✅DESIREE GARCIE folder 📁 Snapchat hacking tools snap leak Complete folder"
-      }
+      { title: "BLACK CP😊",               cover: "https://leopard.hosting.pecon.us/dl/qhihk",   price:40 },
+      { title: "CP PARADISE",              cover: "https://leopard.hosting.pecon.us/dl/sirul",   price: 30 },
+      { title: "😈NEW CP 02🔥",            cover: "https://leopard.hosting.pecon.us/dl/qqcxz",   price: 30 },
+      { title: "✅NEW CP 03🔥",            cover: "https://leopard.hosting.pecon.us/dl/asnac",   price: 30 },
+      { title: "🥵PREMIUM CP🥵",           cover: "https://example.com/covers/023.jpg",         price: 30 },
+      { title: "🔥REN BOYS",               cover: "https://example.com/covers/023.jpg",         price: 30 },
+      { title: "🙈CP GAY",                 cover: "https://leopard.hosting.pecon.us/dl/vgjch",  price: 30 },
+      { title: "ANIMAL CP FUCKING",        cover: "https://leopard.hosting.pecon.us/dl/gmdif",  price: 40 },
+      { title: "🔥RAPE CP",                cover: "https://leopard.hosting.pecon.us/dl/vovoz",  price: 40 },
+      { title: "PEDOMOM🍑",                cover: "https://leopard.hosting.pecon.us/dl/ekwob",  price: 40 },
+      { title: "MON AND SON📁",            cover: "https://leopard.hosting.pecon.us/dl/yvnfh",  price: 40 },
+      { title: "FATHER AND DAUGHTER",      cover: "https://leopard.hosting.pecon.us/dl/svrev",  price: 30 },
+      { title: "AMELIA AND BROTHER🍑‼",    cover: "https://leopard.hosting.pecon.us/dl/zlydm",  price: 30 },
+      { title: "🙈LIZZY AND BROTHER🍑",    cover: "https://leopard.hosting.pecon.us/dl/eusgu",  price: 30 },
+      { title: "AMERICAN TEENS✅",          cover: "https://leopard.hosting.pecon.us/dl/jiusg",  price: 30 },
+      { title: "ENGLISH TEENS🙈",          cover: "https://leopard.hosting.pecon.us/dl/qlviq",  price: 30 },
+      { title: "WHITE TEENS",              cover: "https://leopard.hosting.pecon.us/dl/gtbph",  price: 30 },
+      { title: "TEENS LEAKS📁‼",           cover: "https://leopard.hosting.pecon.us/dl/dfxog",  price: 30 },
+      { title: "IVANKA AND BROTHER🤤",     cover: "https://leopard.hosting.pecon.us/dl/vzpjx",  price: 30 },
+      { title: "HIGH SCHOOL SHOTS🫦🥵",    cover: "https://leopard.hosting.pecon.us/dl/napgs",  price: 30 },
+      { title: "DESIRE GARCIA FOLDER📁",   cover: "https://leopard.hosting.pecon.us/dl/voyki",  price: 30 }
     ];
 
-    // ─── LÓGICA DA PÁGINA ──────────────────────────────────────────────────
-    document.addEventListener("DOMContentLoaded", () => {
-      const params = new URLSearchParams(window.location.search);
-      const id = parseInt(params.get("id")) || 1;
+    const names = ["John","Luke","Carl","Hazael","Robert","Anna","Ian","Isabella","Mark","Steven","Satoshi","Yuna","David","Chloe","Liam","Emma","Kwame","Jade","Ahmed","Pablo","Michael","Camila","Hans","Greta","Peter","Sophie","Victor","Anya","Aisha","Tariq","Juan","Luisa","Chen","Mei","Arjun","Priya"];
 
-      // Produto atual (índice começa em 0)
-      const produto = produtos[id - 1];
+    const folderNames = produtos.map(p => p.title);
 
-      if (!produto) {
-        document.getElementById("video-title").textContent = "Produto não encontrado";
-        document.getElementById("video-description").textContent = "ID inválido.";
-        return;
+    const PER_PAGE = 12;
+    let currentPage = 1;
+    let currentFilter = "recent";
+
+    const cards = produtos.map((prod, i) => ({
+      title: prod.title,
+      time: `${10 + i % 10}s`,
+      image: prod.cover || `https://via.placeholder.com/400x225?text=Cover+${i+1}`,
+      label: i % 5 === 0 ? "HOT" : (i % 4 === 0 ? "NEW" : ""),
+      views: Math.floor(Math.random() * 900) + 100,
+      price: prod.price,
+      createdAt: Date.now() - i * 1000000
+    }));
+
+    // Pegar elementos com segurança
+    const elements = {
+      container:     document.getElementById("card-container"),
+      search:        document.getElementById("search"),
+      filterRecent:  document.getElementById("filterRecent"),
+      filterViews:   document.getElementById("filterViews"),
+      filterPriceHigh: document.getElementById("filterPriceHigh"),
+      filterPriceLow:  document.getElementById("filterPriceLow"),
+      pagination:    document.getElementById("pagination"),
+      pageInfo:      document.getElementById("page-info"),
+      videosFound:   document.getElementById("videos-found")
+    };
+
+    // Se faltar elemento crítico → parar e mostrar aviso no console
+    if (!elements.container) {
+      console.error("Elemento #card-container não encontrado. Verifique o HTML.");
+      return;
+    }
+
+    function getFilteredData() {
+      let filtered = [...cards];
+      if (elements.search?.value) {
+        const kw = elements.search.value.toLowerCase().trim();
+        filtered = filtered.filter(c => c.title.toLowerCase().includes(kw));
       }
 
-      // Preencher informações principais
-      document.getElementById("video-title").innerHTML = `${produto.title} <span class='text-pink-500'>⭐</span>`;
-      document.getElementById("video-description").innerHTML = produto.description.split('✅').join('<br>').split('➡️').join('→ ');
-      document.getElementById("video-views").textContent = (Math.floor(Math.random() * 12000) + 500).toLocaleString();
+      if (currentFilter === "priceHigh") filtered.sort((a,b)=>b.price - a.price);
+      if (currentFilter === "priceLow")  filtered.sort((a,b)=>a.price - b.price);
+      if (currentFilter === "views")     filtered.sort((a,b)=>b.views - a.views);
+      if (currentFilter === "recent")    filtered.sort((a,b)=>b.createdAt - a.createdAt);
 
-      // Poster e vídeo teaser
-      const videoPlayer = document.getElementById("video-player");
-      const videoSource = document.getElementById("video-source");
-      const videoError = document.getElementById("video-error");
+      return filtered;
+    }
 
-      videoPlayer.poster = produto.cover || `https://via.placeholder.com/1280x720?text=No+Poster+${id}`;
+    function render() {
+      const filtered = getFilteredData();
+      const start = (currentPage - 1) * PER_PAGE;
+      const paginated = filtered.slice(start, start + PER_PAGE);
 
-      if (produto.teaser && produto.teaser.trim() !== "") {
-        videoSource.src = produto.teaser;
-        videoPlayer.load();
-      } else {
-        videoPlayer.controls = false;
-        videoError.innerHTML = "Full content available only after purchase via Telegram.<br>Contact us to acquire.";
-        videoError.classList.remove("hidden");
-      }
-
-      videoPlayer.addEventListener("error", () => {
-        videoError.classList.remove("hidden");
-        console.error("Erro no vídeo:", videoPlayer.error?.message);
-      });
-
-      // Vídeos sugeridos (exclui o atual, randomiza 3)
-      const suggested = produtos
-        .map((p, idx) => ({ id: idx + 1, title: p.title, image: p.cover }))
-        .filter(v => v.id !== id)
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 3);
-
-      const container = document.getElementById("suggested-videos");
-      container.innerHTML = "";
-
-      suggested.forEach(video => {
-        container.innerHTML += `
-          <a href="video.html?id=${video.id}" class="block zoom-hover rounded-2xl overflow-hidden shadow-xl bg-zinc-900/70 backdrop-blur-sm border border-purple-900/40">
-            <div class="flex flex-col md:flex-row">
-              <img src="${video.image}" class="w-full md:w-48 h-48 md:h-full object-cover" alt="${video.title}">
-              <div class="p-5 flex flex-col justify-between flex-1">
-                <p class="font-bold text-lg neon-title line-clamp-2">${video.title}</p>
+      // Render cards
+      elements.container.innerHTML = "";
+      paginated.forEach((card, idx) => {
+        const globalIdx = start + idx;
+        const id = globalIdx + 1;
+        elements.container.innerHTML += `
+          <a href="video.html?id=${id}" class="block rounded-2xl overflow-hidden card-hover bg-zinc-900/40">
+            <div class="relative">
+              <img src="${card.image}" alt="${card.title}" class="w-full h-56 object-cover">
+              ${card.label ? `<div class="absolute top-3 left-3 bg-pink-600/90 text-xs font-bold px-3 py-1 rounded-full">${card.label}</div>` : ""}
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold mb-2 line-clamp-2">${card.title}</h3>
+              <div class="flex justify-between text-sm text-zinc-400 mb-2">
+                <span>🕒 ${card.time}</span>
+                <span>👁️ ${card.views.toLocaleString()}</span>
               </div>
             </div>
           </a>
         `;
       });
 
-      // Botão Contact Seller (Telegram)
-      document.getElementById("contact-seller").addEventListener("click", () => {
+      // Pagination
+      const totalPages = Math.ceil(filtered.length / PER_PAGE);
+      elements.pagination.innerHTML = "";
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        btn.className = `px-4 py-2 rounded-full text-sm ${i === currentPage ? 'bg-pink-600 text-white' : 'bg-zinc-800 hover:bg-zinc-700'}`;
+        btn.onclick = () => { currentPage = i; render(); };
+        elements.pagination.appendChild(btn);
+      }
 
+      // Info
+      const from = start + 1;
+      const to = Math.min(start + PER_PAGE, filtered.length);
+      if (elements.pageInfo)   elements.pageInfo.textContent   = `Page ${currentPage} (${from}–${to} of ${filtered.length} folders)`;
+      if (elements.videosFound) elements.videosFound.textContent = `${filtered.length} folders found`;
 
-        const seller = 'Admg';
-        const message = `👋 Hi ${seller}\n\nI'm interested in purchasing this content:\n"${produto.title}"\n\nPlease:\n- Share payment details\n- Explain delivery process\n\nThx! 😊`;
-        
-        const telegramUrl = `https://t.me/USD808?text=${encodeURIComponent(message)}`;
-        window.open(telegramUrl, '_blank');
-      });
+      // Active filter
+      [elements.filterRecent, elements.filterViews, elements.filterPriceHigh, elements.filterPriceLow]
+        .forEach(b => b?.classList.remove("filter-active"));
+      if (currentFilter === "recent")    elements.filterRecent?.classList.add("filter-active");
+      if (currentFilter === "views")     elements.filterViews?.classList.add("filter-active");
+      if (currentFilter === "priceHigh") elements.filterPriceHigh?.classList.add("filter-active");
+      if (currentFilter === "priceLow")  elements.filterPriceLow?.classList.add("filter-active");
+    }
 
-      // Bloqueio básico de dev tools (opcional – não é 100% eficaz)
-      document.addEventListener('keydown', e => {
-        if (e.key === "F12" || 
-            (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) || 
-            (e.ctrlKey && e.key === "U")) {
-          e.preventDefault();
-        }
-      });
-      document.addEventListener('contextmenu', e => e.preventDefault());
-    });
-    </script>
+    // Eventos
+    if (elements.search) {
+      elements.search.addEventListener("input", () => { currentPage = 1; render(); });
+    }
+
+    if (elements.filterRecent)    elements.filterRecent.addEventListener("click",    () => { currentFilter = "recent";    currentPage = 1; render(); });
+    if (elements.filterViews)     elements.filterViews.addEventListener("click",     () => { currentFilter = "views";     currentPage = 1; render(); });
+    if (elements.filterPriceHigh) elements.filterPriceHigh.addEventListener("click", () => { currentFilter = "priceHigh"; currentPage = 1; render(); });
+    if (elements.filterPriceLow)  elements.filterPriceLow.addEventListener("click",  () => { currentFilter = "priceLow";  currentPage = 1; render(); });
+
+    // Primeira renderização
+    render();
+
+  });
+  </script>
 </body>
-
 </html>
-
-
